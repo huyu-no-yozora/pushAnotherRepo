@@ -45,7 +45,6 @@ mv ../${UPLOAD_FILE} "${TARGETDIR}/${UPLOAD_FILE}"
 
 
 # Commit to Another Repository =====
-echo ${PWD}
 git add .
 git commit -m "Deploy ${GITHUB_SHA} by GitHub Actions"
 git push $origin master
