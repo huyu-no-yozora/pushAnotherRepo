@@ -1,0 +1,41 @@
+# entrypoint.sh
+# 
+# Copyright (c) 2020 冬ノ夜空
+# 
+# 
+
+name: 'push file to another repository'
+
+inputs:
+  deploy-token:
+    description: 'token for deployment'
+    required: true
+  upload-file:
+    description: 'upload file name'
+    required: true
+  destination-username:
+    description: 'destination username'
+    required: true
+  destination-repository:
+    description: 'destination repository name'
+    required: true
+  user-email:
+    description: 'email for the commit'
+    required: true
+    
+  target-directory:
+    description: 'directory path from repository root'
+    required: true
+    
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GH_DEPLOY_TOKEN: ${{ inputs.deploy-token }}
+  args:
+    - ${{ inputs.upload-file }}
+    - ${{ inputs.destination-username }}
+    - ${{ inputs.destination-repository }}
+    - ${{ inputs.user-email }}
+    - ${{ inputs.target-directory }}
+    
